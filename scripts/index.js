@@ -64,3 +64,31 @@
   });
 })();
 
+// Measure rotating keyword width to prevent layout shift and keep flow natural
+(() => {
+  const setWidths = () => {
+    document.querySelectorAll('.rotating-keywords').forEach(container => {
+      const keywords = Array.from(container.querySelectorAll('.keyword'));
+      if (!keywords.length) return;
+      const measure = document.createElement('span');
+      measure.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit;letter-spacing:inherit;font-weight:inherit;';
+      document.body.appendChild(measure);
+      let max = 0;
+      keywords.forEach(k => {
+        measure.textContent = k.textContent || '';
+        const w = measure.getBoundingClientRect().width;
+        if (w > max) max = w;
+      });
+      document.body.removeChild(measure);
+      if (max > 0) container.style.width = Math.ceil(max + 2) + 'px';
+    });
+  };
+
+  window.addEventListener('DOMContentLoaded', setWidths);
+  window.addEventListener('resize', (() => {
+    let t; return () => { clearTimeout(t); t = setTimeout(setWidths, 150); };
+  })());
+})();
+
+// (Removed Lottie integration to restore original design)
+
