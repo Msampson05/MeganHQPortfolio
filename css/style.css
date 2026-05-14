@@ -207,6 +207,10 @@ p {
   flex-direction: row-reverse;
 }
 
+#pillarsSection .split-grid {
+  align-items: stretch;
+}
+
 .split-media {
   position: relative;
   border-radius: var(--radius-xl);
@@ -307,6 +311,22 @@ p {
 
 .gradient-media {
   background: linear-gradient(135deg, rgba(190, 24, 93, 0.9), rgba(217, 70, 239, 0.8));
+}
+
+.pillars-media {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  min-height: 100%;
+}
+
+.pillars-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
 }
 
 .blob {
